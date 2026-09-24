@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postres de Rosa 🧁</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'pastel-pink': '#ffe4e1',
+                        'pastel-blue': '#e0f7fa',
+                        'pastel-yellow': '#fff9c4',
+                        'brand-pink': '#f06292',
+                    },
+                    fontFamily: {
+                        'cursive': ['"Dancing Script"', 'cursive'],
+                        'sans': ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #fff0f5; /* Lavender blush */
+            background-image: radial-gradient(circle at center, #ffe4e1 0%, #fff0f5 100%);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(240, 98, 146, 0.1);
+        }
+        .photo-wrapper {
+            overflow: hidden;
+            border-radius: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .photo-wrapper:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(240, 98, 146, 0.3);
+        }
+        .photo-wrapper img {
+            transition: transform 0.5s ease;
+        }
+        .photo-wrapper:hover img {
+            transform: scale(1.05);
+        }
+        /* Modal Animation */
+        #imageModal {
+            transition: opacity 0.3s ease;
+        }
+        .floating-icon {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 antialiased min-h-screen flex flex-col">
+
+    <header class="py-6 text-center shadow-sm bg-white/50 backdrop-blur-sm sticky top-0 z-40">
+        <h1 class="text-4xl md:text-5xl font-cursive text-brand-pink tracking-wide drop-shadow-sm">
+            <span class="inline-block floating-icon">🧁</span> 
+            Los Postres de Rosa 
+            <span class="inline-block floating-icon" style="animation-delay: 1.5s;">🧁</span>
+        </h1>
+    </header>
+
+    <main class="flex-grow max-w-6xl mx-auto px-4 py-10 w-full">
+        
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <!-- Welcome Text -->
+            <section class="glass-panel rounded-3xl p-8 flex flex-col justify-center items-center text-center">
+                <h2 class="text-2xl font-semibold text-brand-pink mb-4">¡Un dulce saludo!</h2>
+                <p class="text-lg leading-relaxed text-gray-700">
+                    Hola bienvenido(a) deseas saber mas de mi emprendimiento de kekes, postres, pasteles, tengo sabor a vainilla, fresa y mucho mas <br>
+                    <span class="text-2xl mt-3 block">🧁🧁🧁🧁🧁</span>
+                </p>
+            </section>
+
+            <!-- Payment Info -->
+            <section class="glass-panel rounded-3xl p-8 flex flex-col justify-center items-center text-center bg-gradient-to-br from-white/70 to-pastel-blue/40">
+                <h3 class="text-xl font-semibold text-gray-600 mb-6">Medios de Pago</h3>
+                <div class="flex items-center gap-4 mb-4">
+                    <span class="bg-purple-600 text-white font-bold py-2 px-6 rounded-full text-lg shadow-md transform hover:scale-105 transition">Yape</span>
+                    <span class="text-gray-400 font-bold">o</span>
+                    <span class="bg-teal-500 text-white font-bold py-2 px-6 rounded-full text-lg shadow-md transform hover:scale-105 transition">Plin</span>
+                </div>
+                <div class="text-3xl font-bold text-gray-800 bg-white/80 py-2 px-6 rounded-2xl shadow-inner mt-2 inline-block">
+                    925264018 <span class="text-brand-pink text-xl font-cursive ml-2">Rosa</span>
+                </div>
+            </section>
+        </div>
+
+        <section class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="font-cursive text-4xl text-brand-pink inline-block relative">
+                    Mi Catálogo
+                    <div class="absolute -bottom-2 left-1/4 right-1/4 h-1 bg-pastel-pink rounded-full"></div>
+                </h2>
+                <p class="mt-4 text-gray-500">Haz clic en las fotos para verlas más grandes ✨</p>
+            </div>
+
+            <!-- Grid layout -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 px-2 md:px-0">
+                
+                <!-- Photo 1 -->
+                <div class="photo-wrapper glass-panel p-2" onclick="openModal('1.jpeg')">
+                    <div class="aspect-[4/5] overflow-hidden rounded-xl bg-gray-100">
+                        <img src="1.jpeg" alt="Rosa - Foto 1" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <!-- Photo 2 -->
+                <div class="photo-wrapper glass-panel p-2" onclick="openModal('2.jpeg')">
+                    <div class="aspect-[4/5] overflow-hidden rounded-xl bg-gray-100">
+                        <img src="2.jpeg" alt="Rosa - Foto 2" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <!-- Photo 3 -->
+                <div class="photo-wrapper glass-panel p-2" onclick="openModal('3.jpeg')">
+                    <div class="aspect-[4/5] overflow-hidden rounded-xl bg-gray-100">
+                        <img src="3.jpeg" alt="Rosa - Foto 3" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <!-- Photo 4 -->
+                <div class="photo-wrapper glass-panel p-2 lg:col-start-1 lg:col-end-2 lg:translate-x-1/2" onclick="openModal('4.jpeg')">
+                    <div class="aspect-[4/5] overflow-hidden rounded-xl bg-gray-100">
+                        <img src="4.jpeg" alt="Rosa - Foto 4" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <!-- Photo 5 -->
+                <div class="photo-wrapper glass-panel p-2 lg:col-start-2 lg:col-end-3 lg:translate-x-1/2" onclick="openModal('5.jpeg')">
+                    <div class="aspect-[4/5] overflow-hidden rounded-xl bg-gray-100">
+                        <img src="5.jpeg" alt="Rosa - Foto 5" class="w-full h-full object-cover object-top">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white/60 backdrop-blur-md py-6 text-center mt-auto border-t border-white">
+        <p class="text-gray-500 font-medium flex items-center justify-center gap-2">
+            Hecho con <span class="text-brand-pink text-xl">♥</span> para endulzar tu día
+        </p>
+    </footer>
+
+    <!-- Image Modal (Lightbox) -->
+    <div id="imageModal" class="fixed inset-0 z-50 bg-black/80 hidden opacity-0 flex items-center justify-center p-4 backdrop-blur-sm" onclick="closeModal()">
+        <div class="relative max-w-4xl max-h-[90vh] w-full flex justify-center items-center">
+            <!-- Close Button -->
+            <button class="absolute -top-12 right-0 text-white hover:text-brand-pink text-4xl font-bold bg-transparent border-none cursor-pointer transition" onclick="closeModal()">
+                &times;
+            </button>
+            <!-- Enlarged Image -->
+            <img id="modalImage" src="" alt="Vista ampliada" class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl" onclick="event.stopPropagation()">
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+
+        function openModal(imageSrc) {
+            modalImage.src = imageSrc;
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modalImage.src = '';
+            }, 300);
+            document.body.style.overflow = 'auto';
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape" && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
